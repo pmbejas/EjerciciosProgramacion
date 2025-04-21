@@ -265,19 +265,13 @@ internal class Program
     public static void TP4Ejercicio7() {
         int numero, factorial = 1;
         Console.WriteLine("Ingrese un número para calcular su Factorial");
-        if (!int.TryParse(Console.ReadLine(), out numero)) {
-            Console.WriteLine("No se ha ingresado un número");
-            return;
-        }
-        if (numero>=0) {
+        if (ValidarNumeroEnteroPositivo(Console.ReadLine(), out numero))
+        {
             for (int i = 1; i <= numero; i++)
             {
-                factorial *= i;
+                factorial = factorial * i;
             }
-            Console.WriteLine($"El factorial de {numero} es {factorial}");
-        } else
-        {
-            Console.WriteLine("No existe el factorial de un número negativo");
+            Console.WriteLine($"El Factorial de {numero} es: {factorial}");
         }
     }
     public static void TP4Ejercicio8() {
