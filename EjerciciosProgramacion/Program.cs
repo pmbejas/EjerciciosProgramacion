@@ -3,7 +3,7 @@
 internal class Program
 {
     static void Main(){
-        TP4Ejercicio8();
+        TP4Ejercicio1While();
     }
 
     public static Boolean ValidarNumeroEnteroPositivo(string texto, out int numero)
@@ -13,7 +13,6 @@ internal class Program
             if (numero < 1)
             {
                 Console.WriteLine("El número debe ser mayor a 0");
-                return false;
             }
             else
             {
@@ -23,8 +22,8 @@ internal class Program
         else
         {
             Console.WriteLine("El dato ingresado no es un número");
-            return false;
         }
+        return false;
     }
 
     public static void TP4Ejercicio1While() {
@@ -34,8 +33,8 @@ internal class Program
             Console.WriteLine("He pensado un Número entre el 1 y el 25");
             Console.WriteLine("¿Podrías Adivinar cual es?");
             string teclado = Console.ReadLine();
-            if (int.TryParse(teclado, out numeroIngresado)) {
-                if (numeroIngresado>0 && numeroIngresado<=25) {
+            if (ValidarNumeroEnteroPositivo(teclado, out numeroIngresado)) {
+                if (numeroIngresado<=25) {
                     cantidadIntentos++;
                     if (numeroIngresado==numeroSecreto)
                     {
@@ -50,9 +49,6 @@ internal class Program
                 } else {
                     Console.WriteLine("Ingrese un numero entre 1 y 25");
                 }
-            } else
-            {
-                Console.WriteLine("El dato ingresado no es un número");
             }
 
         }
@@ -65,9 +61,9 @@ internal class Program
         Console.WriteLine("¿Podrías Adivinar cual es?");
         do {
             string teclado = Console.ReadLine();
-            if (int.TryParse(teclado, out numeroIngresado))
+            if (ValidarNumeroEnteroPositivo(teclado, out numeroIngresado))
             {
-                if (numeroIngresado > 0 && numeroIngresado <= 25)
+                if (numeroIngresado <= 25)
                 {
                     cantidadIntentos++;
                     if (numeroIngresado == numeroSecreto)
@@ -87,21 +83,14 @@ internal class Program
                     Console.WriteLine("Ingrese un numero entre 1 y 25");
                 }
             }
-            else
-            {
-                Console.WriteLine("El dato ingresado no es un número");
-            }
-
         } while (numeroIngresado != numeroSecreto);
     }
     public static void TP4Ejercicio2While()
     {
         int numero, contador=1;
         Console.WriteLine("Ingrese un Número, Te mostrare su tabla de Multiplicar");
-        if (!int.TryParse(Console.ReadLine(), out numero))
+        if (!ValidarNumeroEnteroPositivo(Console.ReadLine(), out numero))
         {
-            Console.WriteLine("El dato ingresado no es un número");
-            Console.WriteLine("No se puede calcular");
             return;
         }
         Console.WriteLine($"La Tabla de Multiplicar del Número {numero} es:");
@@ -117,10 +106,8 @@ internal class Program
         int numero, contador = 1;
         Console.WriteLine("Ingrese un Número,");
         Console.WriteLine("Te mostrare su tabla de Multiplicar");
-        if (!int.TryParse(Console.ReadLine(), out numero))
+        if (!ValidarNumeroEnteroPositivo(Console.ReadLine(), out numero))
         {
-            Console.WriteLine("El dato ingresado no es un número");
-            Console.WriteLine("No se puede calcular");
             return;
         }
         Console.WriteLine($"La Tabla del Número {numero} es:");
@@ -136,10 +123,8 @@ internal class Program
         int numero;
         Console.WriteLine("Ingrese un Número,");
         Console.WriteLine("Te mostrare su tabla de Multiplicar");
-        if (!int.TryParse(Console.ReadLine(), out numero))
+        if (!ValidarNumeroEnteroPositivo(Console.ReadLine(), out numero))
         {
-            Console.WriteLine("El dato ingresado no es un número");
-            Console.WriteLine("No se puede calcular");
             return;
         }
         Console.WriteLine($"La Tabla del Número {numero} es:");
@@ -159,7 +144,7 @@ internal class Program
             Console.WriteLine("1. Depositar Efectivo");
             Console.WriteLine("2. Extraer Dinero");
             Console.WriteLine("0. Salir");
-            if (int.TryParse(Console.ReadLine(), out opcionMenu)) {
+            if (ValidarNumeroEnteroPositivo(Console.ReadLine(), out opcionMenu)) {
                 switch (opcionMenu)
                 {
                     case 0:
@@ -207,7 +192,6 @@ internal class Program
                         break;
                 }
             } else {
-                Console.WriteLine("No se ha ingresado un dato valido");
                 opcionMenu = -1;
             }
             Console.ReadKey();
@@ -233,9 +217,9 @@ internal class Program
     public static void TP4Ejercicio5() {
         int cantidadNumeros, numero, resultadoPotencia, potencia=3;
         Console.WriteLine("Ingrese la cantidad de numeros que desea calcular su potencia");
-        if (!int.TryParse(Console.ReadLine(), out cantidadNumeros)) {
-            Console.WriteLine("Ingrese un numero válido");
-            return;
+        if (!ValidarNumeroEnteroPositivo(Console.ReadLine(), out cantidadNumeros))
+        {
+           return;
         }
         for (int i = cantidadNumeros; i > 0; i--) {
             resultadoPotencia = 1;
@@ -296,7 +280,6 @@ internal class Program
             Console.Clear();
         }
     }
-
 }
 
 
