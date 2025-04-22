@@ -26,6 +26,26 @@ internal class Program
         return false;
     }
 
+    public static Boolean ValidarNumeroRacionalPositivo(string texto, out float numero)
+    {
+        if (float.TryParse(texto, out numero))
+        {
+            if (numero < 1)
+            {
+                Console.WriteLine("El número debe ser mayor a 0");
+            }
+            else
+            {
+                return true;
+            }
+        }
+        else
+        {
+            Console.WriteLine("El dato ingresado no es un número");
+        }
+        return false;
+    }
+
     public static void TP4Ejercicio1While() {
         Random random = new Random();
         int numeroSecreto = random.Next(25), numeroIngresado=-1, cantidadIntentos = 0;
@@ -283,19 +303,37 @@ internal class Program
 
     public static void DecimalABinario()
     {
-        int numeroDecimal, resto, resultadoDivision;
+        int parteDecimal, resto, resultadoDivision, digitos=0;
+        float numeroRacional, parteRacional;
         string numeroBinario ="";
         Console.WriteLine("Ingrese un número decimal");
-        if (ValidarNumeroEnteroPositivo(Console.ReadLine(), out numeroDecimal)) {
-            resultadoDivision = numeroDecimal;
-            while (resultadoDivision>=2)
+        if (ValidarNumeroRacionalPositivo(Console.ReadLine(), out numeroRacional)) {
+            parteDecimal = (int)numeroRacional;     
+            Console.WriteLine($"Parte Entera: {parteDecimal}"); 
+            parteRacional = (float)(numeroRacional - parteDecimal);
+            Console.WriteLine($"Parte Decimal: {parteRacional}");
+            resultadoDivision = parteDecimal;
+            while (resultadoDivision>=2) //// Aqui se convierte la parte entera del numero en base 10 ////
             {
                 resto = resultadoDivision % 2;
                 resultadoDivision = resultadoDivision / 2;
                     numeroBinario = resto.ToString()+numeroBinario;
             }
             numeroBinario = resultadoDivision.ToString() + numeroBinario;
-            Console.WriteLine($"El número {numeroDecimal} en binario es: {numeroBinario}");
+            if (parteRacional>0)
+            {
+                numeroBinario = numeroBinario + ",";
+            }
+            while (parteRacional != 0 && digitos < 10) //// Aqui se convierte la parte racional del numero en base 10 ////
+            {
+                parteRacional = parteRacional * 2;
+                parteDecimal = (int)parteRacional;
+                numeroBinario = numeroBinario + parteDecimal.ToString();
+                parteRacional = parteRacional - parteDecimal;
+                digitos++;
+            }
+
+            Console.WriteLine($"El número {numeroRacional} en binario es: {numeroBinario}");
         }
         Console.ReadKey();
         Console.Clear();
