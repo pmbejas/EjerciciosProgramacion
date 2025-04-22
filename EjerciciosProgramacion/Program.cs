@@ -3,7 +3,7 @@
 internal class Program
 {
     static void Main(){
-        TP4Ejercicio1While();
+        DecimalABinario();
     }
 
     public static Boolean ValidarNumeroEnteroPositivo(string texto, out int numero)
@@ -279,6 +279,26 @@ internal class Program
             Console.ReadKey();
             Console.Clear();
         }
+    }
+
+    public static void DecimalABinario()
+    {
+        int numeroDecimal, resto, resultadoDivision;
+        string numeroBinario ="";
+        Console.WriteLine("Ingrese un número decimal");
+        if (ValidarNumeroEnteroPositivo(Console.ReadLine(), out numeroDecimal)) {
+            resultadoDivision = numeroDecimal;
+            while (resultadoDivision>=2)
+            {
+                resto = resultadoDivision % 2;
+                resultadoDivision = resultadoDivision / 2;
+                    numeroBinario = resto.ToString()+numeroBinario;
+            }
+            numeroBinario = resultadoDivision.ToString() + numeroBinario;
+            Console.WriteLine($"El número {numeroDecimal} en binario es: {numeroBinario}");
+        }
+        Console.ReadKey();
+        Console.Clear();
     }
 }
 
