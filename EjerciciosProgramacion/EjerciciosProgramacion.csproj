@@ -43,8 +43,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Funciones.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TP4.cs" />
+    <Compile Include="TP5.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
